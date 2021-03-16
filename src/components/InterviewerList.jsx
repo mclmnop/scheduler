@@ -22,8 +22,13 @@ export default function InterviewerList(props) {
     setInterviewer={event => props.setInterviewer(interviewer.id)}/>)
   }) : "Nope"
   return (
-    <section className="interviewers">
-      {interviewers}
-    </section>
+    <main>
+      <section className="interviewers__header">
+        Interviewer
+      </section>
+      <section className="interviewers__list">
+        {interviewers}
+      </section>
+    </main>
   );
 }
