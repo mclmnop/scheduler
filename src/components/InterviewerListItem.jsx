@@ -9,12 +9,12 @@ selected:boolean - to determine if an interview is selected or not
 setInterviewer:function - sets the interviewer upon selection */
 
 export default function InterviewerListItem(props) {
-  const interviewerviewrClass = classnames("interviewers__item", {
+  const interviewerClass = classnames("interviewers__item", {
     "interviewers__item--selected": props.selected
   });
 
   return (
-    <li className={interviewerviewrClass} onClick={() => props.setInterviewer(props.name)} >
+    <li className={interviewerClass} onClick={() => props.setInterviewer(props.name)} >
       <img
         className="interviewers__item-image"
         src={props.avatar}
