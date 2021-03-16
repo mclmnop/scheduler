@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
+import InterviewerList from "./InterviewerList";
 
 const days = [
   {
@@ -26,7 +27,10 @@ export default function Application(props) {
   const selectDay = (day) => {
     setDay(day)
   }
-  console.log('CurrentSelected Day👉', day, 'setDat', selectDay)
+  const selectInterviewer = (id) => {
+    setInterviewer(id)
+  }
+  console.log('CurrentSelected Day👉', day, 'setDay', selectDay)
   return (
     <main className="layout">
       <section className="sidebar">
@@ -43,6 +47,10 @@ export default function Application(props) {
           setDay={selectDay}
       />
       </nav>
+      <div>
+        <InterviewerList
+          setInterviewer={selectInterviewer}/>
+      </div>
       <img
         className="sidebar__lhl sidebar--centered"
         src="images/lhl.png"
