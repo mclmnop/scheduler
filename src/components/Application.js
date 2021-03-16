@@ -22,6 +22,11 @@ const days = [
 
 export default function Application(props) {
   let [ day, setDay ] = useState("Monday")
+  let [ interviewer, setInterviewer ] = useState("")
+  const selectDay = (day) => {
+    setDay(day)
+  }
+  console.log('CurrentSelected Day👉', day, 'setDat', selectDay)
   return (
     <main className="layout">
       <section className="sidebar">
@@ -35,7 +40,7 @@ export default function Application(props) {
       <DayList
           days={days}
           day={day}
-          setDay={setDay}
+          setDay={selectDay}
       />
       </nav>
       <img

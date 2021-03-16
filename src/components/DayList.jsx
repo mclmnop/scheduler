@@ -10,13 +10,16 @@ import DayListItem from "components/DayListItem";
 export default function DayList(props) {
   const dayArray = props.days
   let days = dayArray ? dayArray.map((day, index) => {
+    //console.log('Day Name', day.name, 'Props day', props.day)
     return (
     <DayListItem 
     key={index} 
     name ={day.name} 
     spots={day.spots} 
-    selected={day.name === props.day} 
-    setDay={props.setDay}/>)
+    selected={day.name === props.day}
+    full={day.spots === 0}
+    setDay={event => props.setDay(day.name)}/>
+    )
   }) : "There is no data here"
   
   return (
