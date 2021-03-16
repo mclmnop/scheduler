@@ -13,7 +13,13 @@ export default function InterviewerList(props) {
   });
   const interviewersArray = props.interviewers;
   const interviewers = interviewersArray ? interviewersArray.map((interviewer, index) => {
-    return (<InterviewerListItem key={index} id={interviewer.id} name={interviewer.name} avatar={interviewer.avatar} selected={interviewer.id === props.interviewer} setInterviewer={interviewer.setInterviewer}/>)
+    return (
+    <InterviewerListItem 
+    key={index} 
+    name={interviewer.name} 
+    avatar={interviewer.avatar} 
+    selected={interviewer.id === props.interviewer} 
+    setInterviewer={event => props.setInterviewer(interviewer.id)}/>)
   }) : "Nope"
   return (
     <section className="interviewers">
