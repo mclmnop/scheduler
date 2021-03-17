@@ -66,16 +66,25 @@ const appointments = [
 
 export default function Application(props) {
   
-    let [ day, setDay ] = useState("Monday")
+/*     let [ day, setDay ] = useState("Monday")
     let [ days, setDays ] = useState([])
-    let [ interviewer, setInterviewer ] = useState("")
+    let [ interviewer, setInterviewer ] = useState("") */
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    interviewer: [],
+    // you may put the line below, but will have to remove/comment hardcoded appointments variable
+    //appointments: {}
+  });
+  //console.log('👺', state)
+
 
   useEffect(() => {
     axios
     .get("/api/days")
     .then((response) => {
       setDays(response.data);
-      //console.log('response in application', response);
+      console.log('response in application', response);
     })
     .catch((error) => {
       console.log(error.response.status);
@@ -84,12 +93,17 @@ export default function Application(props) {
     });
   },[])
 
-  //console.log('Days inApplication', days)
-  const selectDay = (day) => {
-    setDay(day)
+
+  const setDay = (newDay) => {
+    setState({...state, day: newDay})
   }
-  const selectInterviewer = (id) => {
-    setInterviewer(id)
+
+  const setDays = (days) => {
+    setState(prev => ({ ...prev, days }));
+    //setState({...state, days: array})
+  }
+  const setInterviewer = (id) => {
+    setState({...state, interviewer:id })
   }
   let schedule = appointments.map((appointment) => {
     return (
@@ -112,14 +126,14 @@ export default function Application(props) {
       <hr className="sidebar__separator sidebar--centered" />
       <nav className="sidebar__menu">
       <DayList
-          days={days}
-          day={day}
-          setDay={selectDay}
+          days={state.days}
+          day={state.day}
+          setDay={setDay}
       />
       </nav>
       <div>
         <InterviewerList
-          setInterviewer={selectInterviewer}/>
+          setInterviewer={setInterviewer}/>
       </div>
       <img
         className="sidebar__lhl sidebar--centered"
