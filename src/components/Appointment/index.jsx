@@ -9,7 +9,8 @@ export default function Appointment(props) {
   console.log('YOOOOOOO', props)
   return (
     <article className="appointment">
-      {props.interview ? <Show interviewer={props.interview.interviewer} student={props.interview.student}/> : <Header time={props.time}/>}
+      <Header time={props.time}/>
+      {props.interview ? <Show interviewer={props.interview.interviewer} student={props.interview.student}/> : <Empty/>}
     </article>
   );
 }
