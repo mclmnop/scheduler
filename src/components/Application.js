@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import InterviewerList from "./InterviewerList";
 import Appointment from "components/Appointment";
+import axios from "axios";
 
 const days = [
   {
@@ -82,6 +83,22 @@ const appointments = [
 ];
 
 export default function Application(props) {
+  axios.get("/api/appointments").then((response) => {
+    console.log('AXIOOOOS FTW !!!!!!',response);
+  });
+
+/*   axios
+  .get("/api/appointments")
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error.response.status);
+    console.log(error.response.headers);
+    console.log(error.response.data);
+  }); */
+
+
   let [ day, setDay ] = useState("Monday")
   let [ interviewer, setInterviewer ] = useState("")
   const selectDay = (day) => {
