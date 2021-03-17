@@ -178,6 +178,6 @@ storiesOf("Appointment", module)
     .add("Status", () => <Status message="Currently deleting"/>)
     .add("Error", () => <Error message="Cannot delete appointment" onClose={action("onClose")}/>)
     .add("Form", () => <Form interviewers={interviewers} interviewer={interviewer} onChange={action("setInterviewer")} value={3}/>)
-    .add("Edit", () => <Form name="StringEdit" interviewers={interviewers} interviewer={interviewer} onSave={action("onSave")} onCancel={action("onCancel")} />)
+    .add("Edit", () => <Form name="StringEdit" interviewers={interviewers} interviewer={interviewer.id} onSave={action("onSave")} onCancel={action("onCancel")} />)
     .add("Create", () => <Form interviewers={interviewers} onSave={action("onSave")} onCancel={action("onCancel")}/>)
   
