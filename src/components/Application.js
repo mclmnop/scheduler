@@ -5,7 +5,7 @@ import InterviewerList from "./InterviewerList";
 import Appointment from "components/Appointment";
 import axios from "axios";
 
-const days = [
+/* const days = [
   {
     id: 1,
     name: "Monday",
@@ -21,7 +21,7 @@ const days = [
     name: "Wednesday",
     spots: 0,
   },
-];
+]; */
 
 const appointments = [
   {
@@ -83,24 +83,26 @@ const appointments = [
 ];
 
 export default function Application(props) {
-  axios.get("/api/appointments").then((response) => {
-    console.log('AXIOOOOS FTW !!!!!!',response);
-  });
+  
+    let [ day, setDay ] = useState("Monday")
+    let [ days, setDays ] = useState([])
+    let [ interviewer, setInterviewer ] = useState("")
 
-/*   axios
-  .get("/api/appointments")
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((error) => {
-    console.log(error.response.status);
-    console.log(error.response.headers);
-    console.log(error.response.data);
-  }); */
+  useEffect(() => {
+    axios
+    .get("/api/days")
+    .then((response) => {
+      setDays(response.data);
+      //console.log('response in application', response);
+    })
+    .catch((error) => {
+      console.log(error.response.status);
+      console.log(error.response.headers);
+      console.log(error.response.data);
+    });
+  },[])
 
-
-  let [ day, setDay ] = useState("Monday")
-  let [ interviewer, setInterviewer ] = useState("")
+  //console.log('Days inApplication', days)
   const selectDay = (day) => {
     setDay(day)
   }
