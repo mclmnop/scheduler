@@ -5,7 +5,7 @@ import InterviewerList from "./InterviewerList";
 import Appointment from "components/Appointment";
 import axios from "axios";
 
-const appointments = [
+/* const appointments = [
   {
     id: 1,
     time: "12pm",
@@ -62,7 +62,7 @@ const appointments = [
     id: "last",
     time: "5pm",
   },
-];
+]; */
 
 export default function Application(props) {
   
@@ -74,17 +74,24 @@ export default function Application(props) {
     days: [],
     interviewer: [],
     // you may put the line below, but will have to remove/comment hardcoded appointments variable
-    //appointments: {}
+    appointments: {}
   });
   //console.log('👺', state)
 
+  const dailyAppointments = [];
+
 
   useEffect(() => {
-    axios
-    .get("/api/days")
-    .then((response) => {
-      setDays(response.data);
-      console.log('response in application', response);
+    Promise.all([
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),      
+    ])
+/*     axios
+    .get("/api/days") */
+    .then((all) => {
+      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data}));
+      console.log(all[0].data);
+      console.log('response in application', all);
     })
     .catch((error) => {
       console.log(error.response.status);
@@ -98,14 +105,10 @@ export default function Application(props) {
     setState({...state, day: newDay})
   }
 
-  const setDays = (days) => {
-    setState(prev => ({ ...prev, days }));
-    //setState({...state, days: array})
-  }
   const setInterviewer = (id) => {
     setState({...state, interviewer:id })
   }
-  let schedule = appointments.map((appointment) => {
+  let schedule = dailyAppointments.map((appointment) => {
     return (
       <Appointment
       key={appointment.id}
