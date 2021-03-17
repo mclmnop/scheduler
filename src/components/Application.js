@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import InterviewerList from "./InterviewerList";
+import Appointment from "components/Appointment";
 
 const days = [
   {
@@ -21,6 +22,65 @@ const days = [
   },
 ];
 
+const appointments = [
+  {
+    id: 1,
+    time: "12pm",
+  },
+  {
+    id: 2,
+    time: "1pm",
+    interview: {
+      student: "Lydia Miller-Jones",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png",
+      }
+    }
+  },
+  {
+    id: 3,
+    time: "2pm",
+    interview: {
+      student: "Abigail Simpson",
+      interviewer: {
+        id: 2,
+        name: "Tori Malcolm",
+        avatar: "https://i.imgur.com/Nmx0Qxo.png",
+      }
+    }
+  },
+  {
+    id: 4,
+    time: "3pm",
+    interview: {
+      student: "Mike Allard",
+      interviewer: {
+        id: 3,
+        name: "Mildred Nazir",
+        avatar: "https://i.imgur.com/T2WwVfS.png",
+      }
+    }
+  },
+  {
+    id: 5,
+    time: "4pm",
+    interview: {
+      student: "Sophie Belleau",
+      interviewer: {
+        id: 4,
+        name: "Cohana Roy",
+        avatar: "https://i.imgur.com/FK8V841.jpg",
+      }
+    }
+  },
+  {
+    id: "last",
+    time: "5pm",
+  },
+];
+
 export default function Application(props) {
   let [ day, setDay ] = useState("Monday")
   let [ interviewer, setInterviewer ] = useState("")
@@ -30,7 +90,16 @@ export default function Application(props) {
   const selectInterviewer = (id) => {
     setInterviewer(id)
   }
-  console.log('CurrentSelected Day👉', day, 'setDay', selectDay)
+  let schedule = appointments.map((appointment) => {
+    return (
+      <Appointment
+      key={appointment.id}
+      {...appointment}
+      />
+    )
+  })
+
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -58,7 +127,7 @@ export default function Application(props) {
       />
       </section>
       <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+        {schedule}
       </section>
     </main>
   );
