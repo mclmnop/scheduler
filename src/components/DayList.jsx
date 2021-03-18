@@ -9,7 +9,7 @@ import DayListItem from "components/DayListItem";
 
 export default function DayList(props) {
   const dayArray = props.days
-  console.log('days??', dayArray)
+  //console.log('days??', dayArray)
   let days = dayArray ? dayArray.map((day, index) => {
     //console.log('Day Name', day.name, 'Props day', props.day)
     return (
