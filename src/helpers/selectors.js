@@ -35,6 +35,7 @@ export function getAppointmentsForDay(state, day) {
 }
 
 
+
 /* {
   "id":1,
   "time":"12pm",
@@ -63,4 +64,18 @@ export function getInterview(state, interview) {
   } : null
   //console.log('result', result)
   return result;
+}
+
+export function getInterviewersForDay(state, day) {
+  const dayFound = state.days.find(eachDay => eachDay.name === day)
+  if(!dayFound){
+    return [];
+  }
+  console.log ('dayfound 🤡', dayFound.interviewers, 'var input', day)
+
+  
+  const interviewers = dayFound.interviewers.map(interviewerId => state.Interviewers[interviewerId]);
+  console.log ('interviewers 💩', interviewers, state.Interviewers["4"])
+ 
+  return interviewers;
 }
