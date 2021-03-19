@@ -14,6 +14,7 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVE = "SAVE";
+const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 
 export default function Appointment(props) {
@@ -36,11 +37,14 @@ export default function Appointment(props) {
     //transition(SHOW)
   }
 
-  function getConfirmPrompt() {
+/*   function getConfirmPrompt() {
     transition(CONFIRM)
-  }
+    return <
+  } */
   function deleteInterview(appointmentId) {
-    console.log('Allo delete', appointmentId)
+    transition(DELETING)
+    props.cancelInterview(appointmentId)
+    .then(() => transition(EMPTY))
   }
 
   return (
@@ -52,9 +56,8 @@ export default function Appointment(props) {
           student={props.interview.student}
           // student={props.interview.student}
           interviewer={props.interview.interviewer}
-          onDelete={props.onDelete}
+          onDelete={() => transition(CONFIRM)}
           appointmentId={props.id}
-          getConfirmPrompt={getConfirmPrompt}
           //interviewer={props.interviewer}
         />
       )}
@@ -75,6 +78,12 @@ export default function Appointment(props) {
           message="Do you really want to delete?"
           onCancel={back}
           onConfirm={deleteInterview}
+          appointmentId={props.id}
+        />
+      )}
+      {mode === DELETING && (
+        <Status
+          message="Deleting"
         />
       )}
     </article>
