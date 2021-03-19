@@ -64,14 +64,7 @@ export default function Application(props) {
     console.log('state apres', state.appointments);
   }
 
-  function save(name, interviewer, id) {
-    const interview = {
-      student: name,
-      interviewer
-    };
-    console.log('state inside save', state)
-    bookInterview(id, interview);
-  }
+
 
 
   let schedule = appointments.map((appointment) => {
@@ -84,7 +77,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewersForToday}
         bookInterview={bookInterview}
-        onSave={save}
+        onSave={props.onSave}
       />
       )
   })
