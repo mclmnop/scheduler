@@ -62,15 +62,18 @@ export default function Application(props) {
       })
   }
 
-  function cancelInterview(appointmentID) {
-    console.log('appointment???', appointmentID)
-/*     return axios.put(`/api/appointments/${appointmentID}`, {interview : 'null'})
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments, 
+      [id]: appointment
+    }
+    return axios.delete(`/api/appointments/${id}`, {interview : 'null'})
     .then(res => {
-      console.log('POUETT POUET', res) 
-    }) */
-    return axios.delete(`/api/appointments/${appointmentID}`, {interview : 'null'})
-    .then(res => {
-      console.log('POUT POUT', res) 
+      setState({...state, appointments})
     })
 
 
@@ -87,7 +90,7 @@ export default function Application(props) {
         interviewers={interviewersForToday}
         bookInterview={bookInterview}
         onSave={props.onSave}
-        onDelete={cancelInterview}
+        cancelInterview={cancelInterview}
       />
       )
   })

@@ -6,6 +6,7 @@ import Show from "./Show"
 import Empty from "./Empty"
 import Form from "./Form"
 import Status from "./Status"
+import Confirm from "./Confirm"
 import useVisualMode from "hooks/useVisualMode";
 import { getInterviewersForDay } from "helpers/selectors";
 
@@ -13,6 +14,7 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVE = "SAVE";
+const CONFIRM = "CONFIRM";
 
 export default function Appointment(props) {
   console.log('appointment index', props)
@@ -34,6 +36,12 @@ export default function Appointment(props) {
     //transition(SHOW)
   }
 
+  function getConfirmPrompt() {
+    transition(CONFIRM)
+  }
+  function deleteInterview(appointmentId) {
+    console.log('Allo delete', appointmentId)
+  }
 
   return (
     <article className="appointment">
@@ -46,6 +54,7 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer}
           onDelete={props.onDelete}
           appointmentId={props.id}
+          getConfirmPrompt={getConfirmPrompt}
           //interviewer={props.interviewer}
         />
       )}
@@ -59,6 +68,13 @@ export default function Appointment(props) {
       )}
       {mode === SAVE && (
         <Status
+        />
+      )}
+      {mode === CONFIRM && (
+        <Confirm
+          message="Do you really want to delete?"
+          onCancel={back}
+          onConfirm={deleteInterview}
         />
       )}
     </article>
