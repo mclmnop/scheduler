@@ -16,7 +16,7 @@ export default function Application(props) {
     interviewers: {},
     appointments: {}
   });
-  console.log('👺', state)
+  //console.log('👺', state)
   
   useEffect(() => {
     Promise.all([
@@ -34,7 +34,7 @@ export default function Application(props) {
       console.log(error.response.data);
     });
   },[])
-  console.log('👺👺', state)
+  //console.log('👺👺', state)
   
   
   const setDay = (newDay) => {
@@ -46,30 +46,35 @@ export default function Application(props) {
   const appointments = getAppointmentsForDay(state, state.day);
 
   function bookInterview(id, interview) {
-    //console.log('Inside book interview', id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
-    //console.log('appointment', appointment);
     const appointments = {
       ...state.appointments, 
       [id]: appointment
     }
-    //console.log('appointments', appointments);
-    //setState({...state, appointments})
-    //console.log('state apres', state.appointments);
-    //useEffect(() => {},[])
+
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(res => {
         console.log('POUT POUT', res) 
         setState({...state, appointments})
       })
-    
   }
 
+  function cancelInterview(appointmentID) {
+    console.log('appointment???', appointmentID)
+/*     return axios.put(`/api/appointments/${appointmentID}`, {interview : 'null'})
+    .then(res => {
+      console.log('POUETT POUET', res) 
+    }) */
+    return axios.delete(`/api/appointments/${appointmentID}`, {interview : 'null'})
+    .then(res => {
+      console.log('POUT POUT', res) 
+    })
 
 
+  }
 
   let schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
@@ -82,6 +87,7 @@ export default function Application(props) {
         interviewers={interviewersForToday}
         bookInterview={bookInterview}
         onSave={props.onSave}
+        onDelete={cancelInterview}
       />
       )
   })

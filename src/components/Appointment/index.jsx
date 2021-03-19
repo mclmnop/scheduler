@@ -15,7 +15,7 @@ const CREATE = "CREATE";
 const SAVE = "SAVE";
 
 export default function Appointment(props) {
-  console.log('YOOOOOOO dans appointment index', props)
+  console.log('appointment index', props)
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -27,7 +27,7 @@ export default function Appointment(props) {
       interviewer
     };
     //console.log('state inside save', state)
-    //console.log('book Interview from application', props.bookInterview(id, interview))
+    console.log('INTERVIEWCONTENT', interview)
     transition(SAVE)
     props.bookInterview(id, interview)
      .then(() => transition(SHOW))
@@ -44,6 +44,8 @@ export default function Appointment(props) {
           student={props.interview.student}
           // student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onDelete={props.onDelete}
+          appointmentId={props.id}
           //interviewer={props.interviewer}
         />
       )}

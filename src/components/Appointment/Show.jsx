@@ -6,7 +6,7 @@ onEdit:Function to be called when the user clicks the Edit button
 onDelete:Function to be called when the user clicks the Delete button */
 
 export default function Show(props) {
-  console.log('SHOW PROPS', props.interviewer)
+  console.log('SHOW PROPS', props)
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
@@ -30,7 +30,7 @@ export default function Show(props) {
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
-            onClick={props.onDelete}
+            onClick={props.onDelete(props.appointmentId)}
           />
         </section>
       </section>
