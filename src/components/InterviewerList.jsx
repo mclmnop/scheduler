@@ -13,7 +13,7 @@ export default function InterviewerList(props) {
   });
   const interviewersArray = props.interviewers;
   const interviewers = interviewersArray ? interviewersArray.map((interviewer, index) => {
-    console.log('Interviewer Name', interviewer.name, 'Props value', props.value, 'id', interviewer.id)
+    //console.log('Interviewer Name', interviewer.name, 'Props value', props.value, 'id', interviewer.id)
     return (
     <InterviewerListItem 
     key={index} 

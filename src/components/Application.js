@@ -18,8 +18,6 @@ export default function Application(props) {
     appointments: {}
   });
   //console.log('👺', state)
-
-  
   
   useEffect(() => {
     Promise.all([
@@ -28,9 +26,7 @@ export default function Application(props) {
       axios.get("/api/interviewers"),      
     ])
     .then((all) => {
-      //console.log('Sord-tu kett chose', all[2].data)
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
-      //console.log('aprs??', state.interviewers, 'appointments', state.appointments, 'props.interviewers', props.interviewers, 'state', state)
     })
     .catch((error) => {
       console.log(error.response.status);
@@ -38,7 +34,7 @@ export default function Application(props) {
       console.log(error.response.data);
     });
   },[])
-  console.log('👺👺', state)
+  //console.log('👺👺', state)
   
   
   const setDay = (newDay) => {
@@ -49,11 +45,29 @@ export default function Application(props) {
     setState({...state, interviewer:id })
   }
   
-  const appointments = getAppointmentsForDay(state, state.day);
-  // const interviewersForToday = getInterviewersForDay(state, state.day);
   const interviewersForToday = getInterviewersForDay(state, state.day);
-  console.log("interviewers???", interviewersForToday,'AAAAAAAA',state.interviewers)
-  
+  const appointments = getAppointmentsForDay(state, state.day);
+
+  function bookInterview(id, interview) {
+    console.log('Inside book interview', id, interview);
+  }
+
+  function save(name, interviewer, id) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    console.log('state inside save', state)
+    bookInterview(id, interview);
+
+  }
+/*   function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+  } */
+
   let schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
@@ -63,6 +77,8 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewersForToday}
+        bookInterview={bookInterview}
+        onSave={save}
       />
       )
   })
