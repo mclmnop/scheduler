@@ -71,11 +71,11 @@ export function getInterviewersForDay(state, day) {
   if(!dayFound){
     return [];
   }
-  console.log ('dayfound 🤡', dayFound.interviewers, 'var input', day)
+  console.log ('dayfound 🤡', dayFound.interviewers, 'var input', day, 'state', state)
 
   
-  const interviewers = dayFound.interviewers.map(interviewerId => state.Interviewers[interviewerId]);
-  console.log ('interviewers 💩', interviewers, state.Interviewers["4"])
+  const interviewers = dayFound.interviewers.map(interviewerId => state.interviewers[interviewerId]);
+  console.log ('interviewers 💩', interviewers, state.interviewers)
  
   return interviewers;
 }
