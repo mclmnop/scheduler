@@ -25,8 +25,10 @@ export default function Appointment(props) {
       interviewer
     };
     //console.log('state inside save', state)
+    console.log('book Interview fromapplication', props.bookInterview(id, interview))
     props.bookInterview(id, interview)
-    transition(SHOW)
+     .then(() => transition(SHOW))
+    //transition(SHOW)
   }
 
 
@@ -37,6 +39,7 @@ export default function Appointment(props) {
       {mode === SHOW && (
         <Show
           student={props.interview.student}
+          // student={props.interview.student}
           interviewer={props.interview.interviewer}
         />
       )}
