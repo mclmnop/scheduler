@@ -5,12 +5,14 @@ import Header from "./Header";
 import Show from "./Show"
 import Empty from "./Empty"
 import Form from "./Form"
+import Status from "./Status"
 import useVisualMode from "hooks/useVisualMode";
 import { getInterviewersForDay } from "helpers/selectors";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVE = "SAVE";
 
 export default function Appointment(props) {
   console.log('YOOOOOOO dans appointment index', props)
@@ -25,7 +27,8 @@ export default function Appointment(props) {
       interviewer
     };
     //console.log('state inside save', state)
-    console.log('book Interview fromapplication', props.bookInterview(id, interview))
+    //console.log('book Interview from application', props.bookInterview(id, interview))
+    transition(SAVE)
     props.bookInterview(id, interview)
      .then(() => transition(SHOW))
     //transition(SHOW)
@@ -41,6 +44,7 @@ export default function Appointment(props) {
           student={props.interview.student}
           // student={props.interview.student}
           interviewer={props.interview.interviewer}
+          //interviewer={props.interviewer}
         />
       )}
       {mode === CREATE && (
@@ -49,6 +53,10 @@ export default function Appointment(props) {
         onCancel = {back}
         onSave={save}
         id={props.id}
+        />
+      )}
+      {mode === SAVE && (
+        <Status
         />
       )}
     </article>
