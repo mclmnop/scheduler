@@ -50,6 +50,18 @@ export default function Application(props) {
 
   function bookInterview(id, interview) {
     console.log('Inside book interview', id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    console.log('appointment', appointment);
+    const appointments = {
+      ...state.appointments, 
+      [id]: appointment
+    }
+    console.log('appointments', appointments);
+    setState({...state, appointments})
+    console.log('state apres', state.appointments);
   }
 
   function save(name, interviewer, id) {
@@ -59,14 +71,8 @@ export default function Application(props) {
     };
     console.log('state inside save', state)
     bookInterview(id, interview);
-
   }
-/*   function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
-  } */
+
 
   let schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
