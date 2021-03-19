@@ -8,6 +8,7 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList"
 
 export default function Form(props) {
+  console.log('Inside form',props)
   const [name, setName] = useState(props.name || "")
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
 
@@ -37,7 +38,7 @@ export default function Form(props) {
             value={name}
             onChange={(event) => setName(event.target.value)}
             type="text"
-            placeholder="Enter Student Name"
+            placeholder= {props.name? props.name : "Enter Student Name"}
           />
         </form>
         <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />

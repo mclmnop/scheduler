@@ -13,16 +13,17 @@ export default function InterviewerList(props) {
   });
   const interviewersArray = props.interviewers;
   const interviewers = interviewersArray ? interviewersArray.map((interviewer, index) => {
-    //console.log('Interviewer Name', interviewer.name, 'Props value', props.value, 'id', interviewer.id)
+    //console.log('Interviewer Name', interviewer, 'Props value', props.value,) 
     return (
     <InterviewerListItem 
-    key={index} 
-    name={interviewer.name} 
-    avatar={interviewer.avatar} 
-    /* selected={interviewer.id === props.id} */
-    selected={interviewer.id === props.value}
-   /*  setInterviewer={(event) => props.setInterviewer(interviewer.id)}/>) */
-    setInterviewer={(event) => props.onChange(interviewer.id)}/>)
+      key={index} 
+      name={interviewer.name} 
+      avatar={interviewer.avatar} 
+      /* selected={interviewer.id === props.id} */
+      selected={interviewer.id === props.value}
+    /*  setInterviewer={(event) => props.setInterviewer(interviewer.id)}/>) */
+      setInterviewer={(event) => props.onChange(interviewer.id)}
+    />)
   }) : "Nope"
   return (
     <main>
