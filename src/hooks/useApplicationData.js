@@ -25,8 +25,8 @@ export default function useApplicationData() {
       ...state.appointments, 
       [id]: appointment
     }
-   const patate = updateSpots(state.day, state.days, state.appointments)
-    console.log('DAYS inside bookInterview', state.days, 'state se rend tu?', state, "New days inside book interview?", patate)
+   //const patate = updateSpots(state.day, state.days, state.appointments)
+    console.log('DAYS inside bookInterview', state.days, 'state se rend tu?', state)
 
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(res => {
@@ -55,26 +55,33 @@ export default function useApplicationData() {
 // How can we calculate how many spots should be available? for each appointments in a day, if !appointments.interview, + 1
 //
   const countSpots = (state, currentDay) => {
+  // const countSpots = (dayObj, appointments) => {
     //setState({...state, day: newDay})
     //find appointement for the day
-    const appointmentsForCurrentDay = getAppointmentsForDay(state, currentDay)
-    console.log('Les spots aujourd\'hui?',appointmentsForCurrentDay, state.spots)
+
     let spotCount = 0
+    const appointmentsForCurrentDay = getAppointmentsForDay(state, currentDay)
+    console.log(' get appointments results and state.spots',appointmentsForCurrentDay)
     appointmentsForCurrentDay.forEach((item) => {
       if (!item.interview) {
         spotCount++
       }
     })
+/*    for (const id of dayObj.appointments) {
+       const appointment = appointmentsList[id];
+      if (appointment.interview) {
+        spotCount++
+      }
+    } */
     console.log('count', spotCount)
     return spotCount
   }
   const updateSpots = (dayName, days, appointments) => {
     //setState({...state, day: newDay})
-    // const currentDay = days.find((item) => item.name === dayName)
     const currentDay = days.find((item) => item.name === dayName)
-    console.log('current day in update spots', currentDay, "wtf state", state)
+    console.log('current day in update spots', currentDay, /* "wtf state", state */)
+    // const spotsLeft = countSpots(currentDay, appointments);
     const spotsLeft = countSpots(state, dayName);
-    // const spotsLeft = countSpots(state, dayName);
     console.log('spots left??', spotsLeft)
     const newDaysArray = days.map((item) => {
       if (item.name === dayName) {
