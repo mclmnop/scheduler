@@ -7,6 +7,7 @@ import Empty from "./Empty"
 import Form from "./Form"
 import Status from "./Status"
 import Confirm from "./Confirm"
+import Error from "./Error"
 import useVisualMode from "hooks/useVisualMode";
 import { getInterviewersForDay } from "helpers/selectors";
 
@@ -17,6 +18,7 @@ const SAVE = "SAVE";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
 
 export default function Appointment(props) {
   console.log('appointment index', props.interview)
@@ -34,7 +36,17 @@ export default function Appointment(props) {
     //console.log('INTERVIEWCONTENT', interview)
     transition(SAVE)
     props.bookInterview(id, interview)
-     .then(() => transition(SHOW))
+     .then((res) => {
+       if(Error){
+
+         console.log ('tout pete ZUT', Error.message)
+         transition(ERROR_SAVE)
+       } else {
+        console.log('res dans index',res)
+        transition(SHOW)
+       }
+       /* transition(SHOW) */})
+     //.catch((error) => console.log('tout pette index',error))
     //transition(SHOW)
   }
 
@@ -74,6 +86,12 @@ export default function Appointment(props) {
       {mode === SAVE && (
         <Status
           message="saving"
+        />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error
+          message={"there was an error"}
+          onClose={back}
         />
       )}
       {mode === CONFIRM && (
