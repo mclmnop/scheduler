@@ -5,17 +5,19 @@ import InterviewerList from "./InterviewerList";
 import Appointment from "components/Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import axios from "axios";
+import useApplicationData from "hooks/useApplicationData";
 
 
 
 export default function Application(props) {
   
-  const [state, setState] = useState({
+/*   const [state, setState] = useState({
     day: "Monday",
     days: [],
     interviewers: {},
     appointments: {}
-  });
+  }); */
+  const { state, setState, setDay, bookInterview, cancelInterview } = useApplicationData()
   //console.log('👺', state)
   
   useEffect(() => {
@@ -37,15 +39,15 @@ export default function Application(props) {
   //console.log('👺👺', state)
   
   
-  const setDay = (newDay) => {
+/*   const setDay = (newDay) => {
     setState({...state, day: newDay})
-  }
+  } */
   
   
   const interviewersForToday = getInterviewersForDay(state, state.day);
   const appointments = getAppointmentsForDay(state, state.day);
 
-  function bookInterview(id, interview) {
+  /* function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -60,10 +62,9 @@ export default function Application(props) {
         console.log('POUT POUT', res) 
         setState({...state, appointments})
       })
-      //.catch((error) => error)
-  }
+  } */
 
-  function cancelInterview(id) {
+ /*  function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -77,8 +78,7 @@ export default function Application(props) {
       .then(res => {
         setState({...state, appointments})
       })
-
-  }
+  } */
 
   let schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
