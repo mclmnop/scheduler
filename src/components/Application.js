@@ -17,7 +17,7 @@ export default function Application(props) {
     setDay, 
     bookInterview, 
     cancelInterview, 
-    countSpots
+    updateSpots
   } = useApplicationData();
   //console.log('👺', state)
   
@@ -28,7 +28,7 @@ export default function Application(props) {
       axios.get("/api/interviewers"),      
     ])
     .then((all) => {
-      console.log(all)
+      //console.log(all)
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
     })
     .catch((error) => {
@@ -59,7 +59,7 @@ export default function Application(props) {
       )
   })
 
-  countSpots()
+  updateSpots(state.day, state.days, state.appointements )
   return (
     <main className="layout">
       <section className="sidebar">
