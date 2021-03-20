@@ -24,8 +24,13 @@ export default function useApplicationData() {
       ...state.appointments, 
       [id]: appointment
     }
+
+    const days = [
+      ...state.days,
+      state.days[0].spots=2
+    ]
    //const patate = updateSpots(state.day, state.days, state.appointments)
-    console.log(/* 'DAYS inside bookInterview', state.days,  */'state inside bookInterview', state)
+    console.log('DAYS inside bookInterview', days, 'state inside bookInterview', state)
 
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(res => {
@@ -78,7 +83,7 @@ export default function useApplicationData() {
   const updateSpots = (dayName, days, appointments) => {
     //setState({...state, day: newDay})
     //const currentDay = days.find((item) => item.name === dayName)
-    console.log(/* 'current day in update spots', currentDay, */  "state from application?", state )
+    console.log(/* 'current day in update spots', currentDay, */  "state from useApplicationData", state )
     // const spotsLeft = countSpots(currentDay, appointments);
     const spotsLeft = countSpots(state, dayName);
     console.log('spots left??', spotsLeft)
