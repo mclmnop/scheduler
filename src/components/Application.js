@@ -16,8 +16,7 @@ export default function Application(props) {
     setState, 
     setDay, 
     bookInterview, 
-    cancelInterview, 
-    updateSpots
+    cancelInterview
   } = useApplicationData();
   //console.log('👺', state)
   

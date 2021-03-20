@@ -24,33 +24,15 @@ export default function useApplicationData() {
       ...state.appointments, 
       [id]: appointment
     }
-// for each day id appointmentid id existe pas dans state, spots+1, sinon
-/*     const currentDay = state.days.find((item) => {
-      //console.log('🎃state day item, should log each day', item)
-      return item.appointments.find((appId) => id === appId)
-    })
-    console.log('🎃 Current day', currentDay) */
-
-      
-/*     const days = [
-      ...state.days,
-    ] */
-   //const days = updateSpots(state.day , state.days, state.appointments)
-    console.log('DAYS inside bookInterview', state.days, 'state inside bookInterview', state.appointments[id])
     const days = state.days.map(function (day) {
-      // console.log("DAY HERE", day);
-      console.log('ben la 🎃', day.name, state.day, state.appointments[id])
       if (day.name === state.day && !state.appointments[id].interview) {
         day.spots--;
       } 
-      // console.log("DAY HERE 2", day);
       return day;
     });
-
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(res => {
         setState({...state, days, appointments})
-
       })
     }
 
@@ -63,7 +45,6 @@ export default function useApplicationData() {
       ...state.appointments, 
       [id]: appointment
     }
-
     const days = state.days.map(function (day) {
       if (day.name === state.day) {
         day.spots++;
@@ -71,10 +52,9 @@ export default function useApplicationData() {
       return day;
     });
     
-
-    return axios.delete(`/api/appointments/${id}`, {interview : 'null'})
-      .then(res => {
-        setState({...state, appointments})
+    return axios.delete(`/api/appointments/${id}`)
+      .then(() => {
+        setState({...state, days, appointments})
       })
   }
 
@@ -82,8 +62,7 @@ export default function useApplicationData() {
 // When should that value change? >>>> when a new spot is created or one cancelled
 // How can we calculate how many spots should be available? for each appointments in a day, if !appointments.interview, + 1
 //
-  const countSpots = (state, currentDay) => {
-  // const countSpots = (dayObj, appointments) => {
+ /*  const countSpots = (state, currentDay) => {
     //setState({...state, day: newDay})
     //find appointement for the day
 
@@ -95,19 +74,13 @@ export default function useApplicationData() {
         spotCount++
       }
     })
-/*    for (const id of dayObj.appointments) {
-       const appointment = appointmentsList[id];
-      if (appointment.interview) {
-        spotCount++
-      }
-    } */
     console.log('count', spotCount)
     return spotCount
   }
   const updateSpots = (dayName, days, appointments) => {
     //setState({...state, day: newDay})
     //const currentDay = days.find((item) => item.name === dayName)
-    //console.log(/* 'current day in update spots', currentDay, */  "state from useApplicationData", state )
+    //console.log( 'current day in update spots', currentDay,   "state from useApplicationData", state )
     // const spotsLeft = countSpots(currentDay, appointments);
     console.log('INPUUUTTT 🤒', dayName, days, appointments)
     const spotsLeft = countSpots(state, dayName);
@@ -121,74 +94,6 @@ export default function useApplicationData() {
     })
     console.log('New days array', newDaysArray)
     return newDaysArray
-  }
-
-
-
-
-
-  return {state, setState, setDay, bookInterview, cancelInterview, countSpots, updateSpots}
-
-
-
+  } */
+  return {state, setState, setDay, bookInterview, cancelInterview}
 }
-
-
-/* 
-function bookInterview(id, interview) {
-  // console.log("BBB", id, interview);
-  const appointment = {
-    ...state.appointments[id],
-    interview: { ...interview },
-  };
-  const appointments = {
-    ...state.appointments,
-    [id]: appointment,
-  };
-  const days = state.days.map(function (day) {
-    // console.log("DAY HERE", day);
-    if (day.name === state.day) {
-      day.spots--;
-    }
-    // console.log("DAY HERE 2", day);
-    return day;
-  });
-  return axios
-    .put(`http://localhost:8001/api/appointments/${id}`, appointment)
-    .then((prev) => {
-      console.log("BOOKINTERVIEW", prev);
-      setState({
-        ...state,
-        days,
-        appointments,
-      });
-    });
-}
-function cancelInterview(id) {
-  const appointment = {
-    ...state.appointments[id],
-    interview: null,
-  };
-  const appointments = {
-    ...state.appointments,
-    [id]: appointment,
-  };
-  const days = state.days.map(function (day) {
-    console.log("DAY HERE", day);
-    if (day.name === state.day) {
-      day.spots++;
-    }
-    console.log("DAY HERE 2", day);
-    return day;
-  });
-  return axios
-    .delete(`http://localhost:8001/api/appointments/${id}`)
-    .then(() => {
-      console.log("HITS IN DELETE");
-      setState({
-        ...state,
-        days,
-        appointments,
-      });
-    });
-} */
