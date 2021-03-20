@@ -60,6 +60,7 @@ export default function Application(props) {
         console.log('POUT POUT', res) 
         setState({...state, appointments})
       })
+      .catch((error) => console.log('tout pette',error))
   }
 
   function cancelInterview(id) {
@@ -72,11 +73,10 @@ export default function Application(props) {
       [id]: appointment
     }
     return axios.delete(`/api/appointments/${id}`, {interview : 'null'})
-    .then(res => {
-      setState({...state, appointments})
-    })
-
-
+      .then(res => {
+        setState({...state, appointments})
+      })
+      .catch((error) => console.log('tout pette',error))
   }
 
   let schedule = appointments.map((appointment) => {

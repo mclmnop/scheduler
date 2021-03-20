@@ -73,6 +73,7 @@ export default function Appointment(props) {
       )}
       {mode === SAVE && (
         <Status
+          message="saving"
         />
       )}
       {mode === CONFIRM && (
@@ -92,7 +93,7 @@ export default function Appointment(props) {
         <Form
         name={props.interview.student}
         interviewers={props.interviewers}
-        interviewer={props.interview.interviewer ? props.interview.interviewer.id : "Calvasse"}
+        interviewer={props.interview.interviewer ? props.interview.interviewer.id : props.interview}
         onCancel={back}
         onSave={save}
         id={props.id}
