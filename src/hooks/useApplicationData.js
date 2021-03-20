@@ -9,7 +9,6 @@ export default function useApplicationData() {
     days: [],
     interviewers: {},
     appointments: {},
-    spots: 0
   });
 
   const setDay = (newDay) => {
@@ -26,7 +25,7 @@ export default function useApplicationData() {
       [id]: appointment
     }
    //const patate = updateSpots(state.day, state.days, state.appointments)
-    console.log('DAYS inside bookInterview', state.days, 'state se rend tu?', state)
+    console.log(/* 'DAYS inside bookInterview', state.days,  */'state inside bookInterview', state)
 
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(res => {
@@ -61,7 +60,7 @@ export default function useApplicationData() {
 
     let spotCount = 0
     const appointmentsForCurrentDay = getAppointmentsForDay(state, currentDay)
-    console.log(' get appointments results and state.spots',appointmentsForCurrentDay)
+    console.log('current day in count spots',appointmentsForCurrentDay)
     appointmentsForCurrentDay.forEach((item) => {
       if (!item.interview) {
         spotCount++
@@ -78,8 +77,8 @@ export default function useApplicationData() {
   }
   const updateSpots = (dayName, days, appointments) => {
     //setState({...state, day: newDay})
-    const currentDay = days.find((item) => item.name === dayName)
-    console.log('current day in update spots', currentDay, /* "wtf state", state */)
+    //const currentDay = days.find((item) => item.name === dayName)
+    console.log(/* 'current day in update spots', currentDay, */  "state from application?", state )
     // const spotsLeft = countSpots(currentDay, appointments);
     const spotsLeft = countSpots(state, dayName);
     console.log('spots left??', spotsLeft)
