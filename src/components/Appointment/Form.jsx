@@ -25,6 +25,7 @@ export default function Form(props) {
     console.log("On submit?",name, interviewer)
   }
   const save = () => {
+    console.log('SAVE', name, interviewer, props.id)
     props.onSave(name, interviewer, props.id)
   }
 
