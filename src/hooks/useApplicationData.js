@@ -64,6 +64,14 @@ export default function useApplicationData() {
       [id]: appointment
     }
 
+    const days = state.days.map(function (day) {
+      if (day.name === state.day) {
+        day.spots++;
+      } 
+      return day;
+    });
+    
+
     return axios.delete(`/api/appointments/${id}`, {interview : 'null'})
       .then(res => {
         setState({...state, appointments})
