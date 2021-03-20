@@ -11,13 +11,13 @@ import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
   
-/*   const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    interviewers: {},
-    appointments: {}
-  }); */
-  const { state, setState, setDay, bookInterview, cancelInterview } = useApplicationData()
+  const { 
+    state, 
+    setState, 
+    setDay, 
+    bookInterview, 
+    cancelInterview 
+  } = useApplicationData();
   //console.log('👺', state)
   
   useEffect(() => {
@@ -38,47 +38,9 @@ export default function Application(props) {
   },[])
   //console.log('👺👺', state)
   
-  
-/*   const setDay = (newDay) => {
-    setState({...state, day: newDay})
-  } */
-  
-  
   const interviewersForToday = getInterviewersForDay(state, state.day);
+
   const appointments = getAppointmentsForDay(state, state.day);
-
-  /* function bookInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments, 
-      [id]: appointment
-    }
-
-    return axios.put(`/api/appointments/${id}`, {interview})
-      .then(res => {
-        console.log('POUT POUT', res) 
-        setState({...state, appointments})
-      })
-  } */
-
- /*  function cancelInterview(id) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    };
-    const appointments = {
-      ...state.appointments, 
-      [id]: appointment
-    }
-
-    return axios.delete(`/api/appointments/${id}`, {interview : 'null'})
-      .then(res => {
-        setState({...state, appointments})
-      })
-  } */
 
   let schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
@@ -97,8 +59,6 @@ export default function Application(props) {
   })
 
   
-
-
   return (
     <main className="layout">
       <section className="sidebar">
