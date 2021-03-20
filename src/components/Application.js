@@ -59,9 +59,9 @@ export default function Application(props) {
       />
       )
   })
-  console.log('State from aplication before update', state.appointments)
-  updateSpots(state.day, state.days, state.appointements )
-  console.log('State from aplication after update', state.appointments)
+  //console.log('State from aplication before update', state.appointments)
+  //updateSpots(state.day, state.days, state.appointements )
+  //console.log('State from aplication after update', state.appointments)
   return (
     <main className="layout">
       <section className="sidebar">
