@@ -39,8 +39,8 @@ export default function useApplicationData() {
     console.log('DAYS inside bookInterview', state.days, 'state inside bookInterview', state.appointments[id])
     const days = state.days.map(function (day) {
       // console.log("DAY HERE", day);
-      if (day.name === state.day && !state.appointments[id]) {
-        console.log('ben la', day.name, state.day, state.appointment)
+      console.log('ben la 🎃', day.name, state.day, state.appointments[id])
+      if (day.name === state.day && !state.appointments[id].interview) {
         day.spots--;
       } 
       // console.log("DAY HERE 2", day);
