@@ -8,7 +8,7 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList"
 
 export default function Form(props) {
-  console.log('Inside form',props)
+  //console.log('Inside form',props)
   const [name, setName] = useState(props.name || "")
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
 

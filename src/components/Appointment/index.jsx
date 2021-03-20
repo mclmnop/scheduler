@@ -19,9 +19,10 @@ const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Appointment(props) {
-  console.log('appointment index', props.interview)
+  //console.log('appointment index', props.interview)
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -32,32 +33,25 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    //console.log('state inside save', state)
-    //console.log('INTERVIEWCONTENT', interview)
     transition(SAVE)
     props.bookInterview(id, interview)
-     .then((res) => {
-       if(Error){
-
-         console.log ('tout pete ZUT', Error.message)
-         transition(ERROR_SAVE)
-       } else {
-        console.log('res dans index',res)
-        transition(SHOW)
-       }
-       /* transition(SHOW) */})
-     //.catch((error) => console.log('tout pette index',error))
-    //transition(SHOW)
+      .then((res) => {
+        if(!Error){
+          transition(SHOW)
+        }
+      })
+      .catch((error) => {
+        transition(ERROR_SAVE, true) 
+      })
   }
 
-/*   function getConfirmPrompt() {
-    transition(CONFIRM)
-    return <
-  } */
   function deleteInterview(appointmentId) {
-    transition(DELETING)
+    transition(DELETING, true)
     props.cancelInterview(appointmentId)
     .then(() => transition(EMPTY))
+    .catch((error) => {
+      transition(ERROR_DELETE, true) 
+    })
   }
 
   return (
@@ -105,6 +99,12 @@ export default function Appointment(props) {
       {mode === DELETING && (
         <Status
           message="Deleting"
+        />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+          message="Unable to delete this file"
+          onClose={back}
         />
       )}
       {mode === EDIT && (

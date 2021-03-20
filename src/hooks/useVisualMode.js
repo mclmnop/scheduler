@@ -9,12 +9,16 @@ const [history, setHistory] = useState([initial])
 function transition(newValue, replace = false) {
   setMode(newValue)
   if(replace) {
-    console.log('replace???','history', history, 'value', newValue )
+    console.log('replace???','history', history, 'value', newValue, 'mode', mode )
     setHistory(prev => [...prev.slice(0, -1), newValue])
-    console.log('replace???','history After', history )
+    console.log('history After', history )
   } else {
+    console.log('replace Pas???','history', history, 'value', newValue, 'mode', mode)
     setMode(newValue)
-    setHistory([...history, newValue])
+    setHistory(prev => [...prev, newValue])
+    // setHistory([...history, newValue])
+    console.log('cochonneri?',[...history, newValue, "patate"], 'mode', mode)
+    console.log('apres replace pas','history', history, 'value', newValue, 'mode', mode )
   }
 }
 
