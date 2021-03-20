@@ -16,7 +16,8 @@ export default function Application(props) {
     setState, 
     setDay, 
     bookInterview, 
-    cancelInterview 
+    cancelInterview, 
+    countSpots
   } = useApplicationData();
   //console.log('👺', state)
   
@@ -58,7 +59,7 @@ export default function Application(props) {
       )
   })
 
-  
+  countSpots()
   return (
     <main className="layout">
       <section className="sidebar">
