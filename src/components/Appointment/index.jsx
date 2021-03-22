@@ -27,14 +27,15 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-  function save(name, interviewer, id) {
+  function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
     transition(SAVE)
     console.log('props.state????? inside Appointment index', props.state)
-    props.bookInterview(id, interview)
+    props.bookInterview(props.id, interview)
+    //props.bookInterview(id, interview)
       .then((res) => {
           transition(SHOW)
           console.log('props.state????? inside Appointment index 2', props.state)
