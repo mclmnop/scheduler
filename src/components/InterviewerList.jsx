@@ -1,16 +1,14 @@
 import React from "react";
-import classnames from 'classnames';
 import "components/InterviewerList.scss";
-import InterviewerListItem from 'components/InterviewerListItem'
+import InterviewerListItem from 'components/InterviewerListItem';
+import PropTypes from 'prop-types';
+
 
 /* interviewers:array - an array of objects containing the information of each interviewer
 interviewer:number - the id of an interviewer
 setInterviewer:function - a function that accepts an interviewer id */
 
 export default function InterviewerList(props) {
-  const interviewerListClass = classnames("interviewers", {
-    "interviewers__item--selected": props.selected
-  });
   const interviewersArray = props.interviewers;
   const interviewers = interviewersArray ? interviewersArray.map((interviewer, index) => {
     //console.log('Interviewer Name', interviewer, 'Props value', props.value,) 
@@ -36,3 +34,7 @@ export default function InterviewerList(props) {
     </main>
   );
 }
+
+InterviewerList.propTypes = {
+  interviewersArray: PropTypes.array.isRequired
+};

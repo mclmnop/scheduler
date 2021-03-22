@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
-import InterviewerList from "./InterviewerList";
 import Appointment from "components/Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import axios from "axios";
@@ -18,7 +17,7 @@ export default function Application(props) {
     bookInterview, 
     cancelInterview
   } = useApplicationData();
-  //console.log('👺', state)
+  //console.log('👺', state);
   
   useEffect(() => {
     Promise.all([
@@ -27,7 +26,7 @@ export default function Application(props) {
       axios.get("/api/interviewers"),      
     ])
     .then((all) => {
-      //console.log(all)
+      //console.log(all);
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
     })
     .catch((error) => {

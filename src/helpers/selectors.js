@@ -22,7 +22,7 @@ export function getAppointmentsForDay(state, day) {
     if(weekday.name === day) {
       appointmentsArray = state.days[index].appointments;
     } else {
-      return null
+      return null;
     }
   });
 

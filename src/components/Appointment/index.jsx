@@ -1,5 +1,5 @@
 
-import React, { Fragment } from "react";
+import React from "react";
 import "components/Appointment/styles.scss";
 import Header from "./Header";
 import Show from "./Show"
@@ -9,7 +9,6 @@ import Status from "./Status"
 import Confirm from "./Confirm"
 import Error from "./Error"
 import useVisualMode from "hooks/useVisualMode";
-import { getInterviewersForDay } from "helpers/selectors";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
