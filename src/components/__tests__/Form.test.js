@@ -2,20 +2,10 @@ import React from "react";
 
 import { render, cleanup, fireEvent} from "@testing-library/react";
 
-import Appointment from "components/Appointment";
 import Form from "components/Appointment/Form";
 
 afterEach(cleanup);
 describe("Form", () => {
-  it("renders without crashing", () => {
-    render(<Form />);
-  });
-  
-/*   it("uses the mock implementation", () => {
-    const fn = jest.fn((a, b) => 42);
-    fn(1, 2);
-    expect(fn).toHaveReturnedWith(42);
-   }); */
   const interviewers = [
     {
       id: 1,
