@@ -31,8 +31,7 @@ export default function useApplicationData() {
       return day;
     });
     return axios.put(`/api/appointments/${id}`, {interview})
-      .then(res => {
-        //console.log('put res', res)
+      .then(() => {
         setState({...state, days, appointments})
       })
     }
