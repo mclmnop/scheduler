@@ -64,7 +64,6 @@ export default {
         data: fixtures.days
       });
     }
-
     if (url === "/api/appointments") {
       return Promise.resolve({
         status: 200,
@@ -72,7 +71,6 @@ export default {
         data: fixtures.appointments
       });
     }
-
     if (url === "/api/interviewers") {
       return Promise.resolve({
         status: 200,

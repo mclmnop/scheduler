@@ -26,6 +26,7 @@ export default function Form(props) {
     console.log("On submit?",name, interviewer)
   }
   const validate = () => {
+    console.log('inside validate', name, interviewer)
     if(name === "") {
       setError("Student name cannot be blank");
       return;
