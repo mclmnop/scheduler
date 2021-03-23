@@ -32,7 +32,7 @@ describe("Application", () => {
       const appointment = getAllByTestId(container, "appointment")[0]
 
      
-      console.log('After', prettyDOM(container))
+      console.log('After', prettyDOM(appointment))
       fireEvent.click(getByAltText(appointment, "Add"));
       fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
         target: { value: "Lydia Miller-Jones"}
