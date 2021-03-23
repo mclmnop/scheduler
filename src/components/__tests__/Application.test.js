@@ -24,7 +24,7 @@ describe("Application", () => {
       expect(getByText("Leopold Silvers")).toBeInTheDocument();
     }) */
   
-      const { container } = render(<Application/>)
+      const { container, debug } = render(<Application/>)
       //console.log('Before', prettyDOM(appointments))
       
       await waitForElement(() => getByText(container,"Archie Cohen"))
@@ -32,13 +32,18 @@ describe("Application", () => {
       const appointment = getAllByTestId(container, "appointment")[0]
 
      
-      console.log('After', prettyDOM(appointment))
+      //console.log('After', prettyDOM(appointment))
       fireEvent.click(getByAltText(appointment, "Add"));
       fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
         target: { value: "Lydia Miller-Jones"}
       })
       fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
       fireEvent.click(getByText(appointment, "Save"))
+      //debug()
+      expect(getByText(container, "saving")).toBeInTheDocument()
+      console.log(appointment)
+      await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
+
 
 
 

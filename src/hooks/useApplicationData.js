@@ -32,7 +32,7 @@ export default function useApplicationData() {
     });
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(res => {
-        console.log('put res', res)
+        //console.log('put res', res)
         setState({...state, days, appointments})
       })
     }
