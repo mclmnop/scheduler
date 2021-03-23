@@ -19,7 +19,8 @@ export default function DayList(props) {
     spots={day.spots} 
     selected={day.name === props.day}
     full={day.spots === 0}
-    setDay={event => props.setDay(day.name)}/>
+    setDay={event => props.setDay(day.name)}
+    />
     )
   }) : "There is no data here"
   
