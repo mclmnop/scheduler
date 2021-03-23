@@ -26,13 +26,18 @@ export default function Form(props) {
     console.log("On submit?",name, interviewer)
   }
   const validate = () => {
-    console.log('Validate Input', name, interviewer, props.id)
     if(name === "") {
       setError("Student name cannot be blank");
       return;
     }
     props.onSave(name, interviewer)
-    //props.onSave(name, interviewer, props.id)  <<< props.id looks unused, we'll see if everyting breaks
+  }
+
+  function onChangeHandler(event) {
+    if (error === "Student name cannot be blank"){
+      setError("")
+    }
+    setName(event.target.value)
   }
  
   return (
@@ -43,7 +48,7 @@ export default function Form(props) {
             data-testid="student-name-input"
             className="appointment__create-input text--semi-bold"
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={onChangeHandler}
             type="text"
             placeholder= {props.name? props.name : "Enter Student Name"}
           />
