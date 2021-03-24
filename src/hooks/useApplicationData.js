@@ -68,7 +68,7 @@ export default function useApplicationData() {
         spotCount++
       }
     })
-    console.log('count', spotCount)
+    //console.log('count', spotCount)
     return spotCount
   }
   const updateSpots = (dayName, days, appointments) => {
@@ -77,9 +77,9 @@ export default function useApplicationData() {
     const currentDay = days.find((item) => item.name === dayName)
     //console.log( 'current day in update spots', currentDay,   "state from useApplicationData", state )
     // const spotsLeft = countSpots(currentDay, appointments);
-    console.log('INPUUUTTT 🤒', dayName, days, typeof(appointments))
+    //console.log('INPUUUTTT 🤒', dayName, days, typeof(appointments))
     const spotsLeft = countSpots(currentDay, appointments);
-    console.log('spots left??', spotsLeft)
+    //console.log('spots left??', spotsLeft)
     const newDaysArray = days.map((item) => {
       if (item.name === dayName) {
         return{...item, spots:spotsLeft}
@@ -87,7 +87,7 @@ export default function useApplicationData() {
         return item
       }
     })
-    console.log('New days array', newDaysArray)
+    //console.log('New days array', newDaysArray)
     return newDaysArray
   }
   return {state, setState, setDay, bookInterview, cancelInterview}
