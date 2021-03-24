@@ -6,8 +6,6 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 import axios from "axios";
 import useApplicationData from "hooks/useApplicationData";
 
-
-
 export default function Application(props) {
   
   const { 
@@ -17,7 +15,6 @@ export default function Application(props) {
     bookInterview, 
     cancelInterview
   } = useApplicationData();
-  //console.log('👺', state);
   
   useEffect(() => {
     Promise.all([
@@ -26,7 +23,6 @@ export default function Application(props) {
       axios.get("/api/interviewers"),      
     ])
     .then((all) => {
-      //console.log(all);
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
     })
     .catch((error) => {
@@ -34,8 +30,8 @@ export default function Application(props) {
       console.log(error.response.headers);
       console.log(error.response.data);
     });
-  },[])
-  //console.log('👺👺', state)
+  },[]);
+
   
   const interviewersForToday = getInterviewersForDay(state, state.day);
 
@@ -56,10 +52,8 @@ export default function Application(props) {
         state={state}
       />
       )
-  })
-  //console.log('State from aplication before update', state.appointments)
-  //updateSpots(state.day, state.days, state.appointements )
-  //console.log('State from aplication after update', state.appointments)
+  });
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -76,10 +70,6 @@ export default function Application(props) {
           setDay={setDay}
       />
       </nav>
-{/*       <div>
-        <InterviewerList
-          setInterviewer={setInterviewer}/>
-      </div> */}
       <img
         className="sidebar__lhl sidebar--centered"
         src="images/lhl.png"

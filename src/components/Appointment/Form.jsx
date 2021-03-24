@@ -1,43 +1,47 @@
-/* name:String
+import React, { useState } from "react";
+import Button from "components/Button";
+import InterviewerList from "components/InterviewerList";
+
+/* Props:
+name:String
 interviewers:Array
 interviewer:Number
 onSave:Function
 onCancel:Function */
-import React, { useState } from "react";
-import Button from "components/Button";
-import InterviewerList from "components/InterviewerList"
 
 export default function Form(props) {
-  //console.log('Inside form',props)
-  const [name, setName] = useState(props.name || "")
-  const [interviewer, setInterviewer] = useState(props.interviewer || null)
-  const [error, setError] = useState("")
+  const [name, setName] = useState(props.name || "");
+  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("");
 
   const reset = () => {
-    setName("")
-    setInterviewer(null)
+    setName("");
+    setInterviewer(null);
   }
+
   const cancel  = () => {
-    reset()
-    props.onCancel()
+    reset();
+    props.onCancel();
   }
+
   const noSubmit = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
+
   const validate = () => {
     if(name === "") {
       setError("Student name cannot be blank");
       return;
     }
-    props.onSave(name, interviewer)
-  }
+    props.onSave(name, interviewer);
+  };
 
   function onChangeHandler(event) {
-    if (error === "Student name cannot be blank"){
-      setError("")
+    if(error === "Student name cannot be blank"){
+      setError("");
     }
-    setName(event.target.value)
-  }
+    setName(event.target.value);
+  };
  
   return (
     <main className="appointment__card appointment__card--create">

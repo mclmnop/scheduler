@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "components/Button"
 
-/* message:String eg. "Delete the appointment?"
+/* Props message:String eg. "Delete the appointment?"
 onConfirm:Function to be called when the user clicks the Confirm button
 onCancel:Function to be called when the user clicks the Cancel button */
 
@@ -12,7 +12,6 @@ export default function Confirm(props) {
       <section className="appointment__actions">
         <Button danger onClick={props.onCancel}>Cancel</Button>
         <Button danger onClick={() => props.onConfirm(props.appointmentId)}>Confirm</Button>
-        {/* <Button danger onClick={props.onConfirm(props.appointmentId)}>Confirm</Button> */}
       </section>
     </main>
   );
