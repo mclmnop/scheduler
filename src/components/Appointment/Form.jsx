@@ -23,10 +23,8 @@ export default function Form(props) {
   }
   const noSubmit = (event) => {
     event.preventDefault()
-    console.log("On submit?",name, interviewer)
   }
   const validate = () => {
-    console.log('inside validate', name, interviewer)
     if(name === "") {
       setError("Student name cannot be blank");
       return;
