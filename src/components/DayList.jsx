@@ -1,17 +1,16 @@
-//Takes three props>>
-// days:Array a list of day objects (each object includes an id, name, and spots)
-// day:String the currently selected day
-// setDay:Function accepts the name of the day eg. "Monday", "Tuesday"
-
 import React from "react";
 import DayListItem from "components/DayListItem";
 
+/* Props:
+Takes three props>>
+days:Array a list of day objects (each object includes an id, name, and spots)
+day:String the currently selected day
+setDay:Function accepts the name of the day eg. "Monday", "Tuesday" */
+
 
 export default function DayList(props) {
-  const dayArray = props.days
-  //console.log('days??', dayArray)
+  const dayArray = props.days;
   let days = dayArray ? dayArray.map((day, index) => {
-    //console.log('Day Name', day.name, 'Props day', props.day)
     return (
     <DayListItem 
     key={index} 
@@ -19,11 +18,10 @@ export default function DayList(props) {
     spots={day.spots} 
     selected={day.name === props.day}
     full={day.spots === 0}
-    setDay={event => props.setDay(day.name)}
+    setDay={() => props.setDay(day.name)}
     />
     )
-  }) : "There is no data here"
-  
+  }) : "no data";
   return (
     <ul>
       {days}
