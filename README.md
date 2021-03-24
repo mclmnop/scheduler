@@ -2,9 +2,9 @@
 
 A small app that lets you book students for interviews throughout the week.
 
-!["General Look"] (https://github.com/mclmnop/scheduler/blob/master/docs/completeView.png?raw=true)
-!["Apointment view"] (https://github.com/mclmnop/scheduler/blob/master/docs/appointmentView.png?raw=true)
-!["Edit view"] (https://github.com/mclmnop/scheduler/blob/master/docs/showFormView2.png?raw=true)
+!["General Look"](https://github.com/mclmnop/scheduler/blob/master/docs/completeView.png?raw=true)
+!["Apointment view"](https://github.com/mclmnop/scheduler/blob/master/docs/appointmentView.png?raw=true)
+!["Edit view"](https://github.com/mclmnop/scheduler/blob/master/docs/showFormView2.png?raw=true)
 
 ## Setup
 
