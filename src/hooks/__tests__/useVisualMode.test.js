@@ -7,15 +7,12 @@ const THIRD = "THIRD";
 
 test("useVisualMode should initialize with default value", () => {
   const { result } = renderHook(() => useVisualMode(FIRST));
-  console.log('first test result', result)
   expect(result.current.mode).toBe(FIRST);
 });
 
 test("useVisualMode should transition to another mode", () => {
   const { result } = renderHook(() => useVisualMode(FIRST));
-  //console.log('second test result', result.current)
   act(() => result.current.transition(SECOND));
-  //console.log('second test result transition', result.current)
   expect(result.current.mode).toBe(SECOND);
 });
 
@@ -23,19 +20,15 @@ test("useVisualMode should return to previous mode", () => {
   const { result } = renderHook(() => useVisualMode(FIRST));
 
   act(() => result.current.transition(SECOND));
-  console.log('mode 1', result.current.mode)
   expect(result.current.mode).toBe(SECOND);
 
   act(() => result.current.transition(THIRD));
-  console.log('mode 2', result.current.mode)
   expect(result.current.mode).toBe(THIRD);
 
   act(() => result.current.back());
-  console.log('mode 3', result.current.mode)
   expect(result.current.mode).toBe(SECOND);
 
   act(() => result.current.back());
-  console.log('mode 4', result.current.mode)
   expect(result.current.mode).toBe(FIRST);
 });
 

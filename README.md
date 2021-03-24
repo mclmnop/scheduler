@@ -21,3 +21,10 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Running Cypress in test environment 
+## Use a test db NODE_ENV=test
+
+```sh
+npm run cypress
+```

@@ -10,7 +10,7 @@ setDay:Function accepts the name of the day eg. "Monday", "Tuesday" */
 
 export default function DayList(props) {
   const dayArray = props.days;
-  let days = dayArray ? dayArray.map((day, index) => {
+  const days = dayArray ? dayArray.map((day, index) => {
     return (
     <DayListItem 
     key={index} 
