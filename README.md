@@ -35,5 +35,9 @@ npm run storybook
 npm run cypress
 ```
 
+## Getting Started
 
-https://github.com/mclmnop/scheduler/blob/master/docs/completeView.png?raw=true
+1. Fork this repository, then clone your fork of this repository.
+2. Install dependencies using the `npm install` command.
+3. Start the web server using the `npm start` command. The app will be served at <http://localhost:8000/>.
+4. Go to <http://localhost:8000/> in your browser.
